@@ -1,0 +1,36 @@
+.login-input{
+    color: var(--main-text-color);
+    border: none;
+    border-bottom: 4px solid var(--main-color);
+    background-color: var(--secondary-background-color) !important;
+}
+
+.login-input:focus{
+    color: var(--main-text-color);
+    border: none;
+    border-bottom: 4px solid var(--main-color-hover);
+    background-color: var(--foucs-secondary-background-color) !important;
+}
+
+.login-label{
+    font-size: 2em;
+}
+
+.login-label:-webkit-autofill,
+.login-label:-webkit-autofill:hover, 
+.login-label:-webkit-autofill:focus, 
+.login-label:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 1000px var(--foucs-secondary-background-color) inset !important;
+}
+
+.login-label:-webkit-autofill {
+    -webkit-text-fill-color: var(--main-text-color) !important;
+}
+
+h1{
+    font-size: 3em;
+}
+
+.is-valid{
+    background-color: var(--secondary-background-color) !important;
+}

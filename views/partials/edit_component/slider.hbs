@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="/css/admin_component.css">
+<div class="container">
+    <h2 class="txt-color text-center">Create Carousel Element</h2>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display: none;" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <form action="" method="post" id="form">
+        {{!-- This confirms that the type submitted was a slider. --}}
+        <input type="hidden" name="type" value="slider" />
+        <div class="form-row align-items-center mb-3 add-center">
+            <button type="button" class="btn btn-success" onclick="addImage()">+ Add Image</button>
+        </div>
+        <section id="carouselData">
+            {{#each componentData}}
+            <section id="img{{@index}}" class="input-group mb-3" data-pid="{{@index}}">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Image URL</span>
+                </div>
+                <input class="form-control comp-input" type="url" name="imageLink[{{@index}}]" id="imageLink{{@index}}"
+                    value="{{image}}" />
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Image Subtitle (Optional)</span>
+                </div>
+                <input type="text" class="form-control comp-input" name="imageSubtitle[{{@index}}]"
+                    id="imageSubtitle{{@index}}" value="{{subtitle}}" />
+                <div class="input-group-prepend">
+                    <span class="txt-color"><a class="btn btn-outline-secondary btn-danger"
+                            onclick="removeImage({{@index}})">Remove</a></span>
+                </div>
+                <div id="invalid{{@index}}" class="invalid-feedback" style="display: none !important;">
+                    ;
+                </div>
+            </section>
+            {{/each}}
+        </section>
+
+
+        <button id="save" class="btn main-color txt-color btn-theme" type="button">Save</button>
+    </form>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const url = new URL(location.href);
+        const err = url.searchParams.get("err");
+        const errorDoc = document.getElementById("page-error");
+        if (err == null) return;
+        switch (err) {
+            case "1":
+                errorDoc.getElementsByTagName("span")[0].textContent = "Error: There must be text in the text area.";
+                errorDoc.style.display = "block";
+                break;
+        }
+    });
+</script>
+
+<script src="/javascript/component/carousel.js"></script>
+<script>
+    updateImageCount();
+    renumber();
+</script>

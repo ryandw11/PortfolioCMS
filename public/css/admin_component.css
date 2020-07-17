@@ -1,0 +1,101 @@
+#text-container {
+    border: 1px solid black !important;
+    color: var(--main-text-color) !important;
+    width: 100%;
+    height: 400px;
+}
+
+#text-container:focus {
+    background-color: var(--secondary-background-color) !important;
+}
+
+form>p{
+    text-align: center;
+}
+
+form>section.submit{
+    display: block;
+    width: 137px;
+    margin: auto;
+}
+
+form>button{
+    display: block !important;
+    width: 100px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+input.comp-input{
+    color: var(--main-text-color) !important;
+    border: none;
+    border-bottom: 4px solid var(--main-color) !important;
+    background-color: var(--secondary-background-color) !important;
+}
+
+textarea.comp-input{
+    color: var(--main-text-color) !important;
+    border: 1px solid var(--main-color) !important;
+    background-color: var(--secondary-background-color) !important;
+    resize: none;
+}
+
+.login-input:focus{
+    color: var(--main-text-color);
+    border: none;
+    border-bottom: 4px solid var(--main-color-hover) !important;
+    background-color: var(--foucs-secondary-background-color) !important;
+}
+
+.input-group-text{
+    color: var(--main-text-color);
+    background-color: var(--main-color) !important;
+    border: 2px solid var(--main-color);
+}
+
+.btn-danger:hover{
+    background-color: rgb(155, 10, 10) !important;
+}
+
+.add-center{
+    width: 132px;
+    margin: 0 auto;
+}
+/* 
+    =======================
+    CSS for the Carousel
+    =======================
+*/
+.upload-box{
+    height: 150px;
+    border: 1px solid black;
+}
+
+.upload-box p {
+    margin: 50px 0;
+    color: gray;
+    text-align: center;
+    user-select: none;
+}
+
+.file-uploader{
+    display: none;
+}
+
+.file-display{
+    color: var(--main-text-color);
+}
+
+.uploader{
+    display: block;
+    width: 104px;
+    margin: auto;
+}
+
+.deleteFile{
+    cursor: pointer;
+}
+
+.invalid-feedback{
+    display: inline !important;
+}

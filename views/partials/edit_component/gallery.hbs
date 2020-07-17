@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="/css/admin_component.css">
+<div class="container">
+    <h2 class="txt-color text-center">Create Image Gallery Element</h2>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display: none;" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <form action="" method="post" id="form">
+        {{!-- This confirms that the type submitted was a gallery. --}}
+        <input type="hidden" name="type" value="gallery" />
+        <div class="form-row align-items-center mb-3 add-center">
+            <button type="button" class="btn btn-success" onclick="addImage()">+ Add Image</button>
+        </div>
+        <section id="carouselData">
+            {{#each componentData}}
+            <section id="img{{@index}}" class="mb-3" data-pid="{{@index}}">
+                <section class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Image URL</span>
+                    </div>
+                    <input class="form-control comp-input" type="url" name="gallery[{{@index}}][0]"
+                        id="imageLink{{@index}}" value="{{imageLink}}" required />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Image Title</span>
+                    </div>
+                    <input type="text" class="form-control comp-input" name="gallery[{{@index}}][1]"
+                        id="imageTitle{{@index}}" value="{{imageTitle}}" required />
+                    <div class="input-group-prepend">
+                        <span class="txt-color"><a class="btn btn-outline-secondary btn-danger"
+                                onclick="removeImage({{@index}})">Remove</a></span>
+                    </div>
+                </section>
+                <textarea name="gallery[{{@index}}][2]" id="imageText{{@index}}"
+                    class="form-control comp-input">{{imageText}}</textarea>
+                <section class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Link URL</span>
+                    </div>
+                    <input class="form-control comp-input" type="text" name="gallery[{{@index}}][3]"
+                        id="linkURL{{@index}}" value="{{urlLink}}" />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Link Text</span>
+                    </div>
+                    <input type="text" class="form-control comp-input" name="gallery[{{@index}}][4]"
+                        id="linkText{{@index}}" value="{{urlText}}" />
+                </section>
+                <div id="invalid{{@index}}" class="invalid-feedback" style="display: none !important;">
+                    ;
+                </div>
+            </section>
+            {{/each}}
+        </section>
+
+
+
+        <button id="save" class="btn main-color txt-color btn-theme" type="button">Save</button>
+    </form>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const url = new URL(location.href);
+        const err = url.searchParams.get("err");
+        const errorDoc = document.getElementById("page-error");
+        if (err == null) return;
+        switch (err) {
+            case "1":
+                errorDoc.getElementsByTagName("span")[0].textContent = "Error: There must be text in the text area.";
+                errorDoc.style.display = "block";
+                break;
+        }
+    });
+</script>
+
+<script src="/javascript/component/gallery.js"></script>
+<script>
+    updateImageCount();
+    renumber();
+</script>

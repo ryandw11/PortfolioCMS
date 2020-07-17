@@ -1,0 +1,49 @@
+.center-div{
+    margin: 0 auto;
+    width: 80%;
+}
+
+.new-post{
+    background-color: rgb(19, 201, 19);
+}
+
+.add-center{
+    width: 132px;
+    margin: 0 auto;
+}
+
+/**
+
+    CSS for the upload box.
+
+*/
+
+.upload-box{
+    height: 150px;
+    border: 1px solid black;
+}
+
+.upload-box p {
+    margin: 50px 0;
+    color: gray;
+    text-align: center;
+    user-select: none;
+}
+
+.file-uploader{
+    display: none;
+}
+
+.uploader{
+    display: block;
+    width: 104px;
+    margin: auto;
+}
+
+.deleteFile{
+    cursor: pointer;
+}
+
+.invalid-feedback{
+    display: inline !important;
+}

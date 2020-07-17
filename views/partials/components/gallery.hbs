@@ -1,0 +1,15 @@
+<section class="gallery-component">
+    {{#each componentData}}
+    <div class="card m-3 bg-second" style="width: 18rem;">
+        <img class="card-img-top" src="{{imageLink}}" alt="{{imageTitle}}">
+        <div class="card-body">
+            <h5 class="card-title txt-color">{{imageTitle}}</h5>
+            <p class="card-text txt-color">{{imageText}}</p>
+            {{#ifEq urlLink ""}}
+            {{else}}
+            <a href="{{urlLink}}" class="btn btn-primary">{{urlText}}</a>
+            {{/ifEq}}
+        </div>
+    </div>
+    {{/each}}
+</section>

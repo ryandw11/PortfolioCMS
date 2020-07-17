@@ -1,0 +1,47 @@
+#new-page{
+    text-align: center;
+}
+
+a{
+    cursor: pointer;
+}
+
+a.disable{
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: rgb(235, 180, 180) !important;
+}
+
+section#pages{
+    flex-flow: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+table{
+    background-color: var(--secondary-background-color);
+}
+
+table tbody tr:nth-child(odd){
+    background-color: var(--background-color);
+}
+
+table th, table td{
+    color: var(--main-text-color);
+}
+
+table thead{
+    background-color: var(--main-color);
+}
+
+table td span{
+    vertical-align: middle;
+    position: relative;
+    top: 10px; 
+}
+
+.movePnl{
+    line-height: 0px;
+}

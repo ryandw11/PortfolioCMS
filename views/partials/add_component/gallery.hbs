@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/css/admin_component.css">
+<div class="container">
+    <h2 class="txt-color text-center">Create Image Gallery Element</h2>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display: none;" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <form action="" method="post" id="form">
+        {{!-- This confirms that the type submitted was a gallery. --}}
+        <input type="hidden" name="type" value="gallery" />
+        <div class="form-row align-items-center mb-3 add-center">
+            <button type="button" class="btn btn-success" onclick="addImage()">+ Add Image</button>
+        </div>
+        <section id="carouselData">
+            <section id="img0" class="mb-3" data-pid="0">
+                <section class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Image URL</span>
+                    </div>
+                    <input class="form-control comp-input" type="url" name="gallery[0][0]" id="imageLink0" required />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Image Title</span>
+                    </div>
+                    <input type="text" class="form-control comp-input" name="gallery[0][1]" id="imageTitle0" required />
+                    <div class="input-group-prepend">
+                        <span class="txt-color"><a class="btn btn-outline-secondary btn-danger"
+                                onclick="removeImage(0)">Remove</a></span>
+                    </div>
+                </section>
+                <textarea name="gallery[0][2]" id="imageText0" class="form-control comp-input"></textarea>
+                <section class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Link URL</span>
+                    </div>
+                    <input class="form-control comp-input" type="text" name="gallery[0][3]" id="linkURL0" />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Link Text</span>
+                    </div>
+                    <input type="text" class="form-control comp-input" name="gallery[0][4]" id="linkText0" />
+                </section>
+                <div id="invalid0" class="invalid-feedback" style="display: none !important;">
+                    ;
+                </div>
+            </section>
+        </section>
+
+
+
+        <button id="save" class="btn main-color txt-color btn-theme" type="button">Save</button>
+    </form>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const url = new URL(location.href);
+        const err = url.searchParams.get("err");
+        const errorDoc = document.getElementById("page-error");
+        if (err == null) return;
+        switch (err) {
+            case "1":
+                errorDoc.getElementsByTagName("span")[0].textContent = "Error: There must be text in the text area.";
+                errorDoc.style.display = "block";
+                break;
+        }
+    });
+</script>
+
+<script src="/javascript/component/gallery.js"></script>

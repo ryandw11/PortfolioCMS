@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/css/admin_component.css">
+<div class="container">
+    <h2 class="txt-color text-center">Create Text Element</h2>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display: none;" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <form action="" method="post" id="form">
+        <input type="hidden" name="type" value="txt" />
+        <input type="hidden" name="text" id="text" />
+
+        <label class="txt-color" for="text">Please type your text! <br> Hint: You can use markdown to spruce up your
+            text!</label>
+        <div id="text-container"></div>
+
+        {{!-- This uses the Monaco Editor from Microsoft --}}
+        <script src="/monaco-editor/min/vs/loader.js"></script>
+        <script>
+            require.config({ paths: { 'vs': '/monaco-editor/min/vs' } });
+            require(['vs/editor/editor.main'], function () {
+                window.editor = monaco.editor.create(document.getElementById('text-container'), {
+                    value: "",
+                    language: 'markdown',
+                    theme: "vs-dark"
+                });
+            });
+
+            function onSubmit() {
+                var value = window.editor.getValue()
+                document.getElementById('text').value = value;
+                document.getElementById('form').submit();
+            }
+        </script>
+        <p class="txt-color"><a id="save" class="btn main-color btn-theme" onclick="onSubmit()">Save</a></p>
+    </form>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const url = new URL(location.href);
+        const err = url.searchParams.get("err");
+        const errorDoc = document.getElementById("page-error");
+        if (err == null) return;
+        switch (err) {
+            case "1":
+                errorDoc.getElementsByTagName("span")[0].textContent = "Error: There must be text in the text area.";
+                errorDoc.style.display = "block";
+                break;
+        }
+    });
+</script>

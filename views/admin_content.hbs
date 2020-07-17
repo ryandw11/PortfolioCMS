@@ -1,0 +1,140 @@
+<head>
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/admin_content.css">
+</head>
+
+<body>
+    {{> admin_head}}
+    <h1 class="txt-color text-center">Portfolio Content</h1>
+    <main class="container">
+        <form action="" method="get">
+            <div class="form-row align-items-center mb-3 add-center">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">+ Add
+                    Content</button>
+            </div>
+            <div class="form-row align-items-center center-div">
+                <div class="col-md-10">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i data-feather="search"></i></div>
+                        </div>
+                        <input type="text" name="search" class="form-control login-input" id="inlineFormInputGroup"
+                            placeholder="Search..." />
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary btn-theme main-color mb-2">Search</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    {{!-- Bootstrap Modal --}}
+    {{!-- This one is meant to upload content to the content manager. --}}
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                {{!-- Form to submit content to server. --}}
+                <form action="" method="post" id="addContent" class="needs-validation" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Upload Content</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{!-- The body for the form --}}
+                        <div class="form-group">
+                            <label for="data-type">What type of content are you uploading?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="data-type" id="imageR" value="image">
+                                <label class="form-check-label" for="image">
+                                    Image (JPG, PNG, GIF)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="data-type" id="imageLinkR"
+                                    value="imageLink">
+                                <label class="form-check-label" for="imageLink">
+                                    Image Link
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="data-type" id="youtubeR"
+                                    value="youtube">
+                                <label class="form-check-label" for="youtube">
+                                    Youtube Video
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="data-type" id="zipR" value="zip">
+                                <label class="form-check-label" for="zip">
+                                    Compressed File (ZIP, TAR.GZ)
+                                </label>
+                            </div>
+                        </div>
+                        {{!-- 
+                        ===================================
+                                  The upload areas
+                        ===================================
+                         --}}
+                        <section id="image">
+                            <label for="">Upload image(s) to the Content Manager:</label>
+                            <div class="upload-box container">
+                                <p><i data-feather="download"></i><br>Drop any file here to upload!</p>
+                            </div>
+                            <button type="button" class="uploader btn btn-primary mt-3">Select Files</button>
+                            <input type="file" name="fileImage" id="files" class="file-uploader"
+                                accept=".png,.jpg,.jpeg,.gif" multiple />
+                            <div class="file-display"></div>
+                            <div class='invalid-feedback'></div>
+                        </section>
+                        <section id="imageLink">
+                            <label for="imgLink">Please insert the image link:</label>
+                            <input type="text" name="imageLink" id="imgLink"
+                                placeholder="https://www.example.com/example.png" class="form-control" />
+                            <label for="imgName">Please input the image name:</label>
+                            <input type="text" name="imageName" id="imgName" class="form-control" />
+                            <div class='invalid-feedback'></div>
+                        </section>
+                        <section id="youtube">
+                            <label for="youtubeVideo">Please insert the youtube link:</label>
+                            <input type="text" name="youtube" id="youtubeVideo"
+                                placeholder="https://www.youtube.com/watch?v=0Ri5jWtAx8A" class="form-control" />
+                            <label for="videoname">Please input the video name:</label>
+                            <input type="text" name="videoName" id="videoname" class="form-control" />
+                            <div class='invalid-feedback'></div>
+                        </section>
+                        <section id="zip">
+                            <label for="">Upload compressed file(s) to the Content Manager:</label>
+                            <div class="upload-box container">
+                                <p><i data-feather="download"></i><br>Drop any file here to upload!</p>
+                            </div>
+                            <button type="button" class="uploader btn btn-primary mt-3">Select Files</button>
+                            <input type="file" name="zip" id="files" class="file-uploader" accept=".zip,.tar.gz"
+                                multiple />
+                            <div class="file-display"></div>
+                            <div class='invalid-feedback'></div>
+                        </section>
+                        <div class='invalid-feedback'></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="/symbols/feather.min.js"></script>
+    <script>
+        feather.replace({ width: '24', height: '24', 'stroke-width': '1' });
+    </script>
+    <script src="/javascript/admin_content.js"></script>
+</body>

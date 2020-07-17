@@ -1,0 +1,31 @@
+{
+  "name": "portfoliocms",
+  "version": "1.0.0",
+  "description": "Portfolio Content Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CMS"
+  ],
+  "author": "Ryandw11",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "express-session": "^1.17.1",
+    "feather-icons": "^4.28.0",
+    "helmet": "^3.23.1",
+    "markdown-it": "^11.0.0",
+    "md5": "^2.2.1",
+    "monaco-editor": "^0.20.0",
+    "multer": "^1.4.2",
+    "sass": "^1.26.8",
+    "sqlite3": "^4.2.0",
+    "sqlstring": "^2.3.2",
+    "uuid": "^8.1.0"
+  }
+}

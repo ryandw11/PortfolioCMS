@@ -1,0 +1,42 @@
+/**
+* Color Configuration
+*/
+
+:root{
+    --main-color: rgb(163, 17, 182);
+    --main-color-hover: rgb(75, 12, 83);
+    --main-text-color: white;
+    
+    --background-color: rgb(32, 32, 32);
+    --secondary-background-color: rgb(63, 62, 62);
+    --foucs-secondary-background-color: rgb(80, 80, 80);
+}
+
+/**
+* STOP: This area should not be edited!
+*
+* Custom css styles to use the variable described above.
+*/
+.main-color{
+    background-color: var(--main-color);
+}
+
+.btn-theme:hover{
+    background-color: var(--main-color-hover);
+}
+
+.btn-theme:focus{
+    background-color: var(--main-color-hover) !important;
+}
+
+.txt-color{
+    color: var(--main-text-color);
+}
+
+body{
+    background-color: var(--background-color);
+}
+
+.bg-second{
+    background-color: var(--secondary-background-color);
+}

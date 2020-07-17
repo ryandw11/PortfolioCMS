@@ -1,0 +1,29 @@
+<section class="slider-component">
+    {{!-- rmvNum is a helper that strings everything except letters --}}
+    <div id="{{rmvNum uuid}}" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {{#each componentData}}
+            <li data-target="#{{rmvNum ../uuid}}" data-slide-to="{{@index}}" {{#ifEq @index 0}} class="active">
+                {{/ifEq}}</li>
+            {{/each}}
+        </ol>
+        <div class="carousel-inner">
+            {{#each componentData}}
+            <div class="carousel-item {{#ifEq @index 0}}active{{/ifEq}}">
+                <img class="d-block w-100" src="{{image}}" alt="{{subtitle}}" />
+                <div class="carousel-caption d-none d-md-block">
+                    <p>{{subtitle}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <a class="carousel-control-prev" href="#{{rmvNum uuid}}" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#{{rmvNum uuid}}" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>

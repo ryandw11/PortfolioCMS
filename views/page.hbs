@@ -1,0 +1,24 @@
+<head>
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <title>{{data.title}}</title>
+</head>
+
+<body>
+    {{> head}}
+    <h1 class="txt-color text-center">{{data.name}}</h1>
+    {{#each content}}
+    <section class="container">
+        {{> (lookup . 'componentType')}}
+    </section>
+    {{/each}}
+
+    <script src="/symbols/feather.min.js"></script>
+    <script>
+        feather.replace({ width: '60', height: '60', 'stroke-width': '1' });
+        $('.carousel').carousel();
+    </script>
+</body>

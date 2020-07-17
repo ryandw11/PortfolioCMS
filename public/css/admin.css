@@ -1,0 +1,116 @@
+section>nav {
+    /* Sets the display to table */
+    display: table;
+    /* It has a width of 75% and is centered. */
+    width: 75%;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+section>nav p {
+    /* A padding of 10 around the link */
+    padding: 10px;
+    /* Removes the link underlines */
+    text-decoration: none;
+    color: var(--main-text-color);
+    /* Adds the background color */
+    background-color: var(--background-color);
+    /* Centers the buttons */
+    width: 100px;
+    margin: auto;
+    /* Sets the text color to white */
+    height: 100px;
+    border-radius: 100px;
+    border: 1px solid var(--main-color);
+}
+
+section nav>ul {
+    /* Sets the display to table-row */
+    display: table-row;
+}
+
+section nav>ul>li {
+    /* Sets the display to table-cell */
+    display: table-cell;
+    text-align: center;
+}
+
+section nav p:hover {
+    background-color: var(--main-color);
+}
+
+section nav p:hover a {
+    color: white;
+}
+
+section nav p {
+    cursor: pointer;
+}
+
+section nav ul li p{
+    box-sizing: content-box;
+}
+
+/* Set the nav links to be orange. */
+section nav a {
+    color: var(--main-color);
+    height: auto;
+    margin-top: 5px;
+    text-decoration: none;
+    width: 100%;
+    user-select: none;
+}
+
+section nav img {
+    width: 60%;
+}
+
+section nav a aside {
+    font-size: 0.5em;
+}
+
+/* Set the font of the first letter to be symbola. */
+section nav p::first-letter {
+    /* font-family: 'SymbolaRegular'; */
+    font-size: 3.5em;
+}
+
+/* Sets the rest of the font to be 1em */
+section nav p:not(::first-letter) {
+    font-size: 1em;
+}
+
+section svg{
+    font-size: 3.5em;
+}
+
+table{
+    background-color: var(--secondary-background-color);
+}
+
+table tbody tr:nth-child(odd){
+    background-color: var(--background-color);
+}
+
+table th, table td{
+    color: var(--main-text-color);
+}
+
+table thead{
+    background-color: var(--main-color);
+}
+
+table td span{
+    vertical-align: middle;
+    position: relative;
+    top: 10px; 
+}
+
+.movePnl{
+    line-height: 0px;
+}
+
+#new-page{
+    text-align: center;
+}

@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="/css/admin_component.css">
+<div class="container">
+    <h2 class="txt-color text-center">Create Carousel Element</h2>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display: none;" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <form action="" method="post" id="form">
+        {{!-- This confirms that the type submitted was a slider. --}}
+        <input type="hidden" name="type" value="slider" />
+        <div class="form-row align-items-center mb-3 add-center">
+            <button type="button" class="btn btn-success" onclick="addImage()">+ Add Image</button>
+        </div>
+        <section id="carouselData">
+            <section id="img0" class="input-group mb-3" data-pid="0">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Image URL</span>
+                </div>
+                <input class="form-control comp-input" type="url" name="imageLink[0]" id="imageLink0" />
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Image Subtitle (Optional)</span>
+                </div>
+                <input type="text" class="form-control comp-input" name="imageSubtitle[0]" id="imageSubtitle0" />
+                <div class="input-group-prepend">
+                    <span class="txt-color"><a class="btn btn-outline-secondary btn-danger"
+                            onclick="removeImage(0)">Remove</a></span>
+                </div>
+                <div id="invalid0" class="invalid-feedback" style="display: none !important;">
+                    ;
+                </div>
+            </section>
+        </section>
+
+
+
+        <button id="save" class="btn main-color txt-color btn-theme" type="button">Save</button>
+    </form>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const url = new URL(location.href);
+        const err = url.searchParams.get("err");
+        const errorDoc = document.getElementById("page-error");
+        if (err == null) return;
+        switch (err) {
+            case "1":
+                errorDoc.getElementsByTagName("span")[0].textContent = "Error: There must be text in the text area.";
+                errorDoc.style.display = "block";
+                break;
+        }
+    });
+</script>
+
+<script src="/javascript/component/carousel.js"></script>

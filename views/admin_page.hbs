@@ -1,0 +1,101 @@
+<head>
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/css/admin_pages.css">
+</head>
+
+<body>
+    {{> admin_head}}
+    <h1 class="txt-color text-center">Pages</h1>
+    <p id="new-page"><a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">+ New Page</a>
+    </p>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display:none" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <section id="pages" class="container">
+        <form id="del-form" action="/admin/pages/delete" method="post">
+            <input type="hidden" name="delete" id="delete" />
+        </form>
+        {{#each pages}}
+        <div class="card m-3" style="width: 14rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{link}}</h6>
+                <p class="card-text">Components: {{comp}}</p>
+                <a href="/admin/pages/{{uuid}}" class="card-link">Edit</a>
+                <a onclick="submitForm('{{uuid}}');" id="del-{{uuid}}" class="card-link text-danger">Delete</a>
+            </div>
+        </div>
+        {{/each}}
+    </section>
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <form action="" method="post" class="needs-validation" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Create new Page</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label for="name">Page name:</label>
+                            <input type="text" id="name" name="name" class="form-control" required />
+                            <div class="invalid-feedback">
+                                Please enter in a name for the page.
+                            </div>
+                        </div>
+                        <div>
+                            <label for="link">What is the link for the page?</label>
+                            <input type="text" id="link" name="link" class="form-control" placeholder="/example"
+                                pattern="^(\/\w*)*[^\/|\s|.]$" required />
+                            <div class="invalid-feedback">
+                                Please enter in a valid link. Example "/example/page" or "/example".
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create Page</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="/symbols/feather.min.js"></script>
+    <script src="/javascript/admin_page.js"></script>
+    <script>
+        $(".disable-tooltip").tooltip();
+    </script>
+    <script>
+        feather.replace({ width: '24', height: '24', 'stroke-width': '1' });
+    </script>
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                //validateForm();
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>

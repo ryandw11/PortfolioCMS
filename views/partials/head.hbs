@@ -1,0 +1,13 @@
+<header>
+    <link rel="stylesheet" href="/css/head.css" />
+    <nav>
+        <img id="logo" src="{{logo}}" alt="">
+        <a id="navicon"><img src="/images/arrow.png" alt=""></a>
+        <ul id="navigation">
+            {{#each nav}}
+            <li><a href="{{link}}" {{#ifEq name ../data.name}}class="active" {{/ifEq}}>{{name}}</a></li>
+            {{/each}}
+        </ul>
+    </nav>
+    <script src="/javascript/navigation.js"></script>
+</header>

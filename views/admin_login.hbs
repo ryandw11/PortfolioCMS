@@ -1,0 +1,53 @@
+<head>
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <h1 class="txt-color text-center">Admin Login</h1>
+    {{!-- {{> head}} --}}
+    {{#if error}}
+    <div class="alert alert-danger w-20 container" role="alert">
+        <img src="/symbols/alert-circle.svg" alt="Alert Icon">
+        Invalid username or password!
+    </div>
+    {{/if}}
+    <form action="" class="container m-auto needs-validation" method="post" novalidate>
+        <div class="mb-3">
+            <label for="username" class="txt-color login-label">Username</label>
+            <input type="text" class="form-control login-input" autocomplete="off" name="username" id="username"
+                required />
+            <div class="invalid-feedback">
+                Please enter in a username.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="txt-color login-label">Password</label>
+            <input type="password" class="form-control login-input" name="password" id="password" required />
+            <div class="invalid-feedback">
+                Please enter in a password.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary main-color btn-theme txt-color">Login</button>
+    </form>
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>

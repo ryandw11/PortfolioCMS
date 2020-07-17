@@ -1,0 +1,126 @@
+<head>
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/css/admin_pages.css">
+</head>
+
+<body>
+    {{> admin_head}}
+    <h1 class="txt-color text-center">Edit Page</h1>
+    <p id="new-page"><a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">+ New
+            Component</a>
+    </p>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display:none" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <div class="alert alert-success w-20 container" id="page-success" style="display:none" role="alert">
+        <i data-feather="check-circle"></i>
+        <span></span>
+    </div>
+    <section class="container">
+        <form action="" method="post" id="compUpdate">
+            <input type="hidden" name="type" value="update" />
+            <input type="hidden" name="order" id="compOrder" />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Component Type</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody id="dropList">
+                    {{#each comp}}
+                    <tr draggable="true" data-pid="{{uuid}}">
+                        <th scope="row" class="movePnl"><i data-feather="chevrons-up"></i><br><i
+                                data-feather="chevrons-down"></i></th>
+                        <td>
+                            <span>{{name}}</span>
+                        </td>
+                        <td>
+                            <span>{{componentPreview}}</span>
+                        </td>
+                        <td><a href="/admin/pages/{{pagePID}}/{{uuid}}/edit" class="btn btn-success">Edit</a>
+                            <a href="/admin/pages/{{pagePID}}/{{uuid}}/delete" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <p id="compSubmit" class="txt-color text-center"><a onclick="submitData()"
+                    class="btn main-color btn-theme">Update
+                    Page</a>
+            </p>
+            <p id="compSubmit" class="txt-color text-center"><a href="/admin/pages" class="btn btn-danger">Back</a>
+            </p>
+        </form>
+    </section>
+
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <form action="" method="post" class="needs-validation" novalidate>
+                    {{!-- This tells the server what action to take with the post. --}}
+                    <input type="hidden" name="type" value="add-component" />
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Add Component</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label for="component">Please Select a Component to Add:</label>
+                            <select class="form-control" id="component" name="component">
+                                {{#each componentList}}
+                                <option value="{{type}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a component.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create Component</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="/symbols/feather.min.js"></script>
+    <script src="/javascript/admin_page_edit.js"></script>
+    <script>
+        $(".disable-tooltip").tooltip();
+    </script>
+    <script>
+        feather.replace({ width: '24', height: '24', 'stroke-width': '1' });
+    </script>
+    <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                //validateForm();
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>

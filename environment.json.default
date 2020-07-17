@@ -1,0 +1,21 @@
+{
+    "website-settings": {
+        "web-site-logo": "/images/logo.png"
+    },
+    "security-settings": {
+        "protocol": "http",
+        "private-certificate": "",
+        "public-certificate": "",
+        "password-in-md5": false
+    },
+    "admin": {
+        "username": "admin",
+        "password": "1234"
+    },
+    "other-accounts": [
+        {
+            "username": "example",
+            "password": "password"
+        }
+    ]
+}
