@@ -3,6 +3,9 @@ PortfolioCMS is a content management system that allows users to dynamically cre
 Portfolio CMS is mainly designed for those showing off graphical work.
 
 # Screen Shots
+![An example page.](https://i.imgur.com/cHXq1yP.png)
+![Main admin page](https://i.imgur.com/TUMwJkT.png)
+![Admin page for editing pages.](https://i.imgur.com/xCJ9bir.png)
 
 # Installation
 ***Notice: PortfolioCMS is currently not ready for production use. Please do not install this yet.***  
