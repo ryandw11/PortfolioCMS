@@ -24,18 +24,19 @@ git clone https://github.com/ryandw11/PortfolioCMS.git
 To install PortfolioCMS using releases you must go [here]() and download the latest verion from the sources section. (Will be a .zip file).  
 Then unzip the file and upload it to your server.  
 
-### 2) Downloading dependencies
-Open up the PortfolioCMS folder you just uploaded to your server in the terminal.  
-Then run the following command:
+### 2) Setting up PortfolioCMS
+As of PortfolioCMS 1.0.0-BETA-RC1, a setup.js script is included to make this process easier and the source code smaller.  
+To begin the setup run the following command: *(This proccess will take several minutes when ran for the first time)*
 ```
-npm install
+node setup.js
 ```
-That will download all of the dependencies that PortfolioCMS requires.  
+PortfolioCMS will automaticaly install all required dependencies and move them into the public folder for use.  
+*There is no need to run `npm install` at all; however, npm must still be installed.*
 
 ### 3) Configure the envrionments.json file.
-This step takes place inside the PortfolioCMS folder.
-Inside will be a file named `environments.json.default`. Duplicate the file and rename the duplicate to `environments.json`.  
-Then configure the file to fit your needs. (It is recommended to enable https).  
+This step takes place inside the PortfolioCMS folder.  
+The setup script automatically created an `environments.json` file. (Please ignore the `environments.json.default` file).  
+Please configure the file to fit your needs before starting PortfolioCMS. (It is recommended to enable https).  
 Be certain to change the default username and password to something secure.  
   
 [For a complete guide on configuring the environments.json file please click here]()
@@ -49,10 +50,10 @@ Now that PortfolioCMS is configured, start the server from the terminal by using
 ```
 node index.js
 ```
-Your server is now running on the port you specified in the `environments.json` file.
+Your server is now running on the port you specified in the `environments.json` file. *(Currently only runs on port 8080)*
 
 # Licenses
-This project uses many libraries to accomplish its goals. The following libraries are included in the source code for easier installation and development:
+This project uses many libraries to accomplish its goals. **These libraries are no longer included in the source as of 1.0.0-BETA-RC1**
 - [Bootstrap is licensed under MIT](https://github.com/twbs/bootstrap/blob/main/LICENSE)
 - [Feather is licensed under MIT](https://github.com/feathericons/feather/blob/master/LICENSE)
 - [The Monaco Editor is licensed under MIT](https://github.com/microsoft/monaco-editor/blob/master/LICENSE.md)
