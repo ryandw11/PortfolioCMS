@@ -110,3 +110,10 @@ environment.json
 package-lock.json
 *.db
 /content/
+
+#
+# Dependencies
+#
+/public/symbols
+/public/monaco-editor
+/public/bootstrap.*

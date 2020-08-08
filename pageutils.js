@@ -1,3 +1,15 @@
+/**
+ * =============[Portfolio CMS]=============
+ * This script handles page information.
+ * 
+ * Used By:
+ * - index.js
+ * =============[Portfolio CMS]=============
+ */
+
+/**
+ * Represents a web page.
+ */
 class Page {
     constructor(uuid, name, title, subtitle, link, comp) {
         this.uuid = uuid;

@@ -1,3 +1,17 @@
+/**
+ * =============[Portfolio CMS]=============
+ * This is the primary file for PortfolioCMS.
+ * Right now this contains all server-side express
+ * code for the site.
+ * 
+ * TODO Split off sections of the code into their own script files (ex: pages, admin, content, etc.)
+ * 
+ * Version: 1.0.0-BETA-RC1
+ * 
+ * =============[Portfolio CMS]=============
+ */
+
+
 const express = require('express');
 const bodyParser = require("body-parser");
 const session = require('express-session');
@@ -11,6 +25,9 @@ const helmet = require('helmet');
 
 const multer = require('multer');
 const upload = multer({ dest: './content/' });
+
+// Grab the version information.
+const version = require('./version.js');
 
 /**
  * ==========================================
@@ -38,9 +55,20 @@ ComponentManager.addComponent(new Gallery());
  * ==========================================
  */
 
+// Console color codes.
+const purple = "\u001b[35m";
+const red = "\u001b[31m";
+const green = "\u001b[32m";
+const yellow = "\u001b[33m";
+const end = "\u001b[39m";
+const reset = "\u001b[0m";
+
+console.log(`${purple}[PortfolioCMS]${end} Starting up PortfolioCMS v${version.getVersionString()}`);
+
+
 const app = express();
 
-app.listen(8080, () => console.log("Server is on!"));
+app.listen(8080, () => console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port 8080.`));
 
 app.use('/', express.static(__dirname + '/public'));
 
@@ -115,7 +143,8 @@ app.get('/admin', (req, res) => {
                 home: 'active',
                 logo: settings.web_logo,
                 pages: data.sort((a, b) => a.compOrder - b.compOrder),
-                pageList: pagez.filter((a) => data.filter((b) => a.uuid == b.uuid).length < 1)
+                pageList: pagez.filter((a) => data.filter((b) => a.uuid == b.uuid).length < 1),
+                version: version.getVersionString()
             });
         });
     });
@@ -282,8 +311,35 @@ const pageUtils = require('./pageutils.js')
 var pagesExists = fs.existsSync('pages.db');
 const pages = new sqlite3.Database('pages.db');
 if (!pagesExists) {
-    console.log('created starting data!');
+    console.log(`${purple}[PortfolioCMS]${end} No database detected. Creating default database.`);
     pages.serialize(() => {
+        /*
+            Setup the database version table.
+        */
+        pages.run(`CREATE TABLE IF NOT EXISTS sysver (
+            id INTEGER PRIMARY KEY,
+            name VARCHAR(50) NOT NULL,
+            data VARCHAR(50) NOT NULL
+        )`);
+        pages.run(`INSERT INTO sysver (name, data) VALUES ($name, $data)`, {
+            $name: "major",
+            $data: version.major
+        });
+        pages.run(`INSERT INTO sysver (name, data) VALUES ($name, $data)`, {
+            $name: "minor",
+            $data: version.minor
+        });
+        pages.run(`INSERT INTO sysver (name, data) VALUES ($name, $data)`, {
+            $name: "bug",
+            $data: version.bug
+        });
+        pages.run(`INSERT INTO sysver (name, data) VALUES ($name, $data)`, {
+            $name: "suffix",
+            $data: version.suffix
+        });
+        /*
+            Setup the versions table.
+        */
         pages.run(`CREATE TABLE IF NOT EXISTS pages (
             id INTEGER PRIMARY KEY,
             uuid TEXT NOT NULL,
@@ -325,6 +381,8 @@ if (!pagesExists) {
             $title: "PortfolioCMS",
             $subtitle: "PortfolioCMS",
             $link: "/"
+        }, () => {
+            console.log(`${purple}[PortfolioCMS]${end} Successfully created default database.`);
         });
     });
 }
