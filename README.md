@@ -31,7 +31,9 @@ To begin the setup run the following command: *(This proccess will take several 
 node setup.js
 ```
 PortfolioCMS will automaticaly install all required dependencies and move them into the public folder for use.  
-*There is no need to run `npm install` at all; however, npm must still be installed.*
+*There is no need to run `npm install` at all; however, npm must still be installed.*  
+  
+[More information about the setup script can be found here.](https://github.com/ryandw11/PortfolioCMS/wiki/The-Setup-Script)
 
 ### 3) Configure the envrionments.json file.
 This step takes place inside the PortfolioCMS folder.  
