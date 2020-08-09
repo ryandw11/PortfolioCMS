@@ -23,9 +23,6 @@ const sqlString = require('sqlstring');
 const compression = require('compression');
 const helmet = require('helmet');
 
-const multer = require('multer');
-const upload = multer({ dest: './content/' });
-
 // Grab the version information.
 const version = require('./version.js');
 
@@ -55,6 +52,15 @@ ComponentManager.addComponent(new Gallery());
  * ==========================================
  */
 
+/**
+* 
+* Account Settings
+* 
+*/
+const accounts = require('./accounts.js');
+
+const settings = require('./settings.js');
+
 // Console color codes.
 const purple = "\u001b[35m";
 const red = "\u001b[31m";
@@ -68,7 +74,35 @@ console.log(`${purple}[PortfolioCMS]${end} Starting up PortfolioCMS v${version.g
 
 const app = express();
 
-app.listen(8080, () => console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port 8080.`));
+if (settings.security_settings.protocol == "http") {
+    const http = require('http');
+    var httpServer = http.createServer(app);
+    httpServer.listen(settings.security_settings.port, () => {
+        console.log(`${purple}[PortfolioCMS]${end} ${yellow}WARNING: Please use the https protocol on a production server.`);
+        console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port ${settings.security_settings.port}.`);
+    });
+}
+else if (settings.security_settings.protocol == "https") {
+    const https = require('https');
+    let privateKey;
+    let certificate;
+    try {
+        privateKey = fs.readFileSync(settings.security_settings["private-certificate"], 'utf8');
+        certificate = fs.readFileSync(settings.security_settings["public-certificate"], 'utf8');
+    } catch (ex) {
+        console.log(`${red}[PortfolioCMS]${end} ${yellow}ERROR: Cannot read/find private/public key. Does PortfolioCMS have permission to read those files?`);
+        process.exit(1);
+    }
+
+    var credentials = { key: privateKey, cert: certificate };
+    var httpsServer = https.createServer(credentials, app);
+    httpsServer.listen(settings.security_settings.port, () => {
+        console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port ${settings.security_settings.port}.`);
+    });
+} else {
+    console.log(`${red}[PortfolioCMS]${end} ${yellow}ERROR: Invalid protocol in the environment.json file.`);
+    process.exit(1);
+}
 
 app.use('/', express.static(__dirname + '/public'));
 
@@ -105,8 +139,11 @@ app.use(helmet());
 app.engine('hbs', hbs);
 app.set('view engine', 'hbs');
 
-// app.enable('view cache');
-// app.use(compression());
+if (settings.production) {
+    app.enable('view cache');
+    app.use(compression());
+    console.log(`${purple}[PortfolioCMS]${end} Production mode detected. Enabling page cache.`);
+}
 
 app.use(session({
     secret: 'a^3J75H8v-6Jfjsc&3+mca**fj4$$mcsjiog#4$',
@@ -116,15 +153,6 @@ app.use(session({
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-/**
- * 
- * Account Settings
- * 
- */
-const accounts = require('./accounts.js');
-
-const settings = require('./settings.js');
 
 /**
  *
@@ -763,9 +791,3 @@ app.get('*', (req, res) => {
         return;
     });
 });
-
-/**
- *
- * I am currently working on the edit page for the components.
- *
- */
