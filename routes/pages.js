@@ -36,7 +36,7 @@ module.exports = (accounts, settings, pages, uuid, pageUtils, sqlString, Compone
         pages.all('SELECT * FROM pages', async (err, data) => {
             let pageData = await pageUtils.dataConverter(data, pages);
             res.render('admin_page', {
-                page: 'active', logo: settings.web_logo, pages: pageData, helpers: {
+                page: 'active', logo: settings.web_logo, favicon: settings.favicon, pages: pageData, helpers: {
                     ifDelete: (pid, options) => {
                         if (pid == 'index0') {
                             return options.fn(this);
@@ -162,7 +162,8 @@ module.exports = (accounts, settings, pages, uuid, pageUtils, sqlString, Compone
                     page: 'active',
                     logo: settings.web_logo,
                     comp: components.sort((a, b) => a.compOrder - b.compOrder),
-                    componentList: ComponentManager.getListOfComponets()
+                    componentList: ComponentManager.getListOfComponets(),
+                    favicon: settings.favicon
                 });
             });
         });
@@ -250,7 +251,7 @@ module.exports = (accounts, settings, pages, uuid, pageUtils, sqlString, Compone
                 res.redirect("/admin");
                 return;
             }
-            res.render("admin_add_component", { page: 'active', component: "add_component/" + component, logo: settings.web_logo });
+            res.render("admin_add_component", { page: 'active', component: "add_component/" + component, logo: settings.web_logo, favicon: settings.favicon });
         });
     });
 
@@ -327,7 +328,11 @@ module.exports = (accounts, settings, pages, uuid, pageUtils, sqlString, Compone
                     return;
                 }
                 const comp = ComponentManager.getComponentFromName(data.componentType);
-                res.render("admin_edit_component", { page: 'active', component: "edit_component/" + comp.getTechName(), logo: settings.web_logo, componentData: comp.getEditComponentData(data.componentData) });
+                res.render("admin_edit_component", {
+                    page: 'active', component: "edit_component/" + comp.getTechName(), logo: settings.web_logo,
+                    componentData: comp.getEditComponentData(data.componentData),
+                    favicon: settings.favicon
+                });
             });
         });
     });

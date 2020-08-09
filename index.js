@@ -130,10 +130,8 @@ else if (settings.security_settings.protocol == "https") {
 
 /*
     Add the public directory.
-    TODO: change '/' to '/content' or something similar.
 */
-
-app.use('/', express.static(__dirname + '/public'));
+app.use('/content', express.static(__dirname + '/public'));
 
 const hbs = require('express-handlebars')({
     defaultLayout: 'main',
@@ -177,10 +175,20 @@ if (settings.production) {
     console.log(`${purple}[PortfolioCMS]${end} Production mode detected. Enabling page cache.`);
 }
 
+let cookie = {};
+/*
+    If in production and https is enabled, then secure the cookies.
+*/
+if (settings.production && settings.security_settings.protocol === "https") {
+    cookie.secure = true;
+    app.set('trust proxy', 1);
+}
+
 app.use(session({
-    secret: 'a^3J75H8v-6Jfjsc&3+mca**fj4$$mcsjiog#4$',
+    secret: uuid(),
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: cookie
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -300,7 +308,8 @@ app.get('*', (req, res) => {
                 pages.all(`SELECT * FROM navigation`, (err, nav) => {
                     res.render('404', {
                         nav: nav.sort((a, b) => a.compOrder - b.compOrder),
-                        logo: settings.web_logo
+                        logo: settings.web_logo,
+                        favicon: settings.favicon
                     });
                 });
             }
@@ -315,7 +324,8 @@ app.get('*', (req, res) => {
             pages.all(`SELECT * FROM navigation`, (err, nav) => {
                 res.render('page', {
                     content: content.sort((a, b) => a.compOrder - b.compOrder), logo: settings.web_logo, data: data,
-                    nav: nav.sort((a, b) => a.compOrder - b.compOrder)
+                    nav: nav.sort((a, b) => a.compOrder - b.compOrder),
+                    favicon: settings.favicon
                 });
             });
         });

@@ -36,7 +36,8 @@ module.exports = (version, accounts, settings, pages, md5, uuid) => {
                     logo: settings.web_logo,
                     pages: data.sort((a, b) => a.compOrder - b.compOrder),
                     pageList: pagez.filter((a) => data.filter((b) => a.uuid == b.uuid).length < 1),
-                    version: version.getVersionString()
+                    version: version.getVersionString(),
+                    favicon: settings.favicon
                 });
             });
         });
@@ -164,7 +165,7 @@ module.exports = (version, accounts, settings, pages, md5, uuid) => {
             res.redirect('/admin');
             return;
         }
-        res.render('admin_login', { nav: {} });
+        res.render('admin_login', { nav: {}, favicon: settings.favicon });
     });
 
     /**
@@ -204,7 +205,7 @@ module.exports = (version, accounts, settings, pages, md5, uuid) => {
             res.redirect('/admin/login');
             return;
         }
-        res.render('admin_content', { content: 'active', logo: settings.web_logo });
+        res.render('admin_content', { content: 'active', logo: settings.web_logo, favicon: settings.favicon });
     });
 
     return router;

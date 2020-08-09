@@ -1,9 +1,11 @@
 {
     "website-settings": {
-        "web-site-logo": "/images/logo.png"
+        "web-site-logo": "/images/logo.png",
+        "web-site-favicon": "/images/favicon.png"
     },
     "security-settings": {
         "protocol": "http",
+        "port": "8080",
         "private-certificate": "",
         "public-certificate": "",
         "password-in-md5": false
@@ -17,5 +19,6 @@
             "username": "example",
             "password": "password"
         }
-    ]
+    ],
+    "production": false
 }
