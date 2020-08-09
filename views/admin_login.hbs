@@ -9,7 +9,7 @@
     {{!-- {{> head}} --}}
     {{#if error}}
     <div class="alert alert-danger w-20 container" role="alert">
-        <img src="/symbols/alert-circle.svg" alt="Alert Icon">
+        <i data-feather="alert-circle"></i>
         Invalid username or password!
     </div>
     {{/if}}
@@ -31,6 +31,11 @@
         </div>
         <button type="submit" class="btn btn-primary main-color btn-theme txt-color">Login</button>
     </form>
+
+    <script src="/symbols/feather.min.js"></script>
+    <script>
+        feather.replace({ width: '24', height: '24', 'stroke-width': '1' });
+    </script>
     <script>
         (function () {
             'use strict';
