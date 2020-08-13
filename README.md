@@ -2,6 +2,10 @@
 PortfolioCMS is a content management system that allows users to dynamically create and edit pages to display their work.  
 Portfolio CMS is mainly designed for those showing off graphical work.
 
+  
+[Check out a demo version of PortfolioCMS here!](https://demo.ryandw11.com/)
+(Username: admin, password: 1234)
+
 # Screen Shots
 ![An example page.](https://i.imgur.com/cHXq1yP.png)
 ![Main admin page](https://i.imgur.com/TUMwJkT.png)
