@@ -9,6 +9,7 @@
  */
 
 const express = require('express');
+const { render } = require('sass');
 const router = express.Router();
 
 /**
@@ -147,7 +148,7 @@ module.exports = (version, accounts, settings, pages, md5, uuid) => {
     /**
      * This serves as a way to delete nave bar items.
      */
-    router.get('/admin/nav/:uuid/delete', (req, res) => {
+    router.get('/nav/:uuid/delete', (req, res) => {
         if (!accounts.isSessionValid(req.session.username, req.session.sessionID)) {
             res.redirect('/admin/login');
             return;
@@ -206,6 +207,14 @@ module.exports = (version, accounts, settings, pages, md5, uuid) => {
             return;
         }
         res.render('admin_content', { content: 'active', logo: settings.web_logo, favicon: settings.favicon });
+    });
+
+    router.post('/content', (req, res) => {
+        if (!accounts.isSessionValid(req.session.username, req.session.sessionID)) {
+            res.redirect('/admin/login');
+            return;
+        }
+        res.redirect('/admin/content');
     });
 
     return router;

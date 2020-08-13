@@ -90,7 +90,7 @@ const yellow = "\u001b[33m";
 const end = "\u001b[39m";
 const reset = "\u001b[0m";
 
-console.log(`${purple}[PortfolioCMS]${end} Starting up PortfolioCMS v${version.getVersionString()}`);
+console.log(`${purple}[PortfolioCMS]${end} Starting up PortfolioCMS v${version.getVersionString()} ${reset}`);
 
 
 const app = express();
@@ -102,8 +102,8 @@ if (settings.security_settings.protocol == "http") {
     const http = require('http');
     var httpServer = http.createServer(app);
     httpServer.listen(settings.security_settings.port, () => {
-        console.log(`${purple}[PortfolioCMS]${end} ${yellow}WARNING: Please use the https protocol on a production server.`);
-        console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port ${settings.security_settings.port}.`);
+        console.log(`${purple}[PortfolioCMS]${end} ${yellow}WARNING: Please use the https protocol on a production server.${reset}`);
+        console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port ${settings.security_settings.port}.${reset}`);
     });
 }
 else if (settings.security_settings.protocol == "https") {
@@ -114,17 +114,17 @@ else if (settings.security_settings.protocol == "https") {
         privateKey = fs.readFileSync(settings.security_settings["private-certificate"], 'utf8');
         certificate = fs.readFileSync(settings.security_settings["public-certificate"], 'utf8');
     } catch (ex) {
-        console.log(`${red}[PortfolioCMS]${end} ${yellow}ERROR: Cannot read/find private/public key. Does PortfolioCMS have permission to read those files?`);
+        console.log(`${red}[PortfolioCMS]${end} ${yellow}ERROR: Cannot read/find private/public key. Does PortfolioCMS have permission to read those files?${reset}`);
         process.exit(1);
     }
 
     var credentials = { key: privateKey, cert: certificate };
     var httpsServer = https.createServer(credentials, app);
     httpsServer.listen(settings.security_settings.port, () => {
-        console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port ${settings.security_settings.port}.`);
+        console.log(`${purple}[PortfolioCMS]${end} ${green}PortfolioCMS is online running off of port ${settings.security_settings.port}.${reset}`);
     });
 } else {
-    console.log(`${red}[PortfolioCMS]${end} ${yellow}ERROR: Invalid protocol in the environment.json file.`);
+    console.log(`${red}[PortfolioCMS]${end} ${yellow}ERROR: Invalid protocol in the environment.json file.${reset}`);
     process.exit(1);
 }
 
@@ -172,7 +172,7 @@ app.set('view engine', 'hbs');
 if (settings.production) {
     app.enable('view cache');
     app.use(compression());
-    console.log(`${purple}[PortfolioCMS]${end} Production mode detected. Enabling page cache.`);
+    console.log(`${purple}[PortfolioCMS]${end} Production mode detected. Enabling page cache.${reset}`);
 }
 
 let cookie = {};
@@ -208,7 +208,7 @@ const pages = new sqlite3.Database('pages.db');
  * If the data base does not exist, then create it.
  */
 if (!pagesExists) {
-    console.log(`${purple}[PortfolioCMS]${end} No database detected. Creating default database.`);
+    console.log(`${purple}[PortfolioCMS]${end} No database detected. Creating default database.${reset}`);
     pages.serialize(() => {
         /*
             Setup the database version table.
