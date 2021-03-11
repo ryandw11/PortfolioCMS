@@ -1,16 +1,16 @@
 <header>
-    <link rel="stylesheet" href="/content/css/head.css" />
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/css/head.css" />
     <nav>
         <img id="logo" src="{{logo}}" alt="">
-        <a id="navicon"><img src="/content/images/arrow.png" alt=""></a>
+        <a id="navicon"><img src="{{ROOT_PATH}}content/images/arrow.png" alt=""></a>
         <ul id="navigation">
-            <li><a href="/admin" class="{{home}}">Admin Home</a></li>
-            <li><a href="/admin/pages" class="{{page}}">Pages</a></li>
+            <li><a href="{{ROOT_PATH}}admin" class="{{home}}">Admin Home</a></li>
+            <li><a href="{{ROOT_PATH}}admin/pages" class="{{page}}">Pages</a></li>
             {{!-- <li><a href="/admin/articles" class="{{article}}">Articles</a></li> --}}
-            <li><a href="/admin/content" class="{{content}}">Content</a></li>
-            <li><a href="/" class="{{back}}">Back To Site</a></li>
+            <li><a href="{{ROOT_PATH}}admin/content" class="{{content}}">Content</a></li>
+            <li><a href="{{ROOT_PATH}}" class="{{back}}">Back To Site</a></li>
             </li>
         </ul>
     </nav>
-    <script src="/content/javascript/navigation.js"></script>
+    <script src="{{ROOT_PATH}}content/javascript/navigation.js"></script>
 </header>

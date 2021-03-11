@@ -13,6 +13,7 @@ var json = JSON.parse(fs.readFileSync("./environment.json", 'utf-8'));
 module.exports = {
     web_logo: "/content/" + json['website-settings']['web-site-logo'],
     favicon: "/content/" + json['website-settings']['web-site-favicon'],
+    root_path: json['website-settings']['root-path'],
     security_settings: json['security-settings'],
     production: json['production']
 };

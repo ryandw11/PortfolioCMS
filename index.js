@@ -157,6 +157,16 @@ const hbs = require('express-handlebars')({
         },
         rmvNum(a) {
             return a.replace(/[^\w]/g, '').replace(/[0-9]/g, '');
+        },
+        ROOT_PATH() {
+            return settings.root_path;
+        },
+        FIX_LINK(a) {
+            if (settings.root_path == "/") {
+                return a;
+            } else {
+                return settings.root_path.substring(0, settings.root_path.length - 2);
+            }
         }
     }
 });

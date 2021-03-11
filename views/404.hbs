@@ -1,7 +1,7 @@
 <head>
     {{> meta_tags}}
-    <link rel="stylesheet" href="/content/bootstrap.min.css" />
-    <link rel="stylesheet" href="/content/theme.css" />
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/theme.css" />
     <title>Page Not Found</title>
     <link rel="icon" href="{{favicon}}" type="image/png" sizes="16x16">
 </head>
@@ -11,5 +11,5 @@
     <h1 class="txt-color text-center">Error 404</h1>
     <h3 class="txt-color text-center">Page not found!</h3>
 
-    <p class="text-center mt-5"><a href="/" class="btn btn-info">Back to Homepage.</a></p>
+    <p class="text-center mt-5"><a href="{{ROOT_PATH}}" class="btn btn-info">Back to Homepage.</a></p>
 </body>

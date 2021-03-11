@@ -1,7 +1,8 @@
 {
     "website-settings": {
         "web-site-logo": "/images/logo.png",
-        "web-site-favicon": "/images/favicon.png"
+        "web-site-favicon": "/images/favicon.png",
+        "root-path": "/"
     },
     "security-settings": {
         "protocol": "http",

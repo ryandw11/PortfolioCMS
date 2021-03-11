@@ -1,8 +1,8 @@
 <head>
     {{> meta_tags}}
-    <link rel="stylesheet" href="/content/bootstrap.min.css" />
-    <link rel="stylesheet" href="/content/theme.css">
-    <link rel="stylesheet" href="/content/css/admin_pages.css">
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/theme.css">
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/css/admin_pages.css">
     <link rel="icon" href="{{favicon}}" type="image/png" sizes="16x16">
 </head>
 
@@ -16,7 +16,7 @@
         <span></span>
     </div>
     <section id="pages" class="container">
-        <form id="del-form" action="/admin/pages/delete" method="post">
+        <form id="del-form" action="{{ROOT_PATH}}admin/pages/delete" method="post">
             <input type="hidden" name="delete" id="delete" />
         </form>
         {{#each pages}}
@@ -25,7 +25,7 @@
                 <h5 class="card-title">{{name}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{link}}</h6>
                 <p class="card-text">Components: {{comp}}</p>
-                <a href="/admin/pages/{{uuid}}" class="card-link">Edit</a>
+                <a href="{{ROOT_PATH}}admin/pages/{{uuid}}" class="card-link">Edit</a>
                 <a onclick="submitForm('{{uuid}}');" id="del-{{uuid}}" class="card-link text-danger">Delete</a>
             </div>
         </div>
@@ -71,9 +71,9 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/content/bootstrap.bundle.min.js"></script>
-    <script src="/content/symbols/feather.min.js"></script>
-    <script src="/content/javascript/admin_page.js"></script>
+    <script src="{{ROOT_PATH}}content/bootstrap.bundle.min.js"></script>
+    <script src="{{ROOT_PATH}}content/symbols/feather.min.js"></script>
+    <script src="{{ROOT_PATH}}content/javascript/admin_page.js"></script>
     <script>
         $(".disable-tooltip").tooltip();
     </script>

@@ -1,8 +1,8 @@
 <head>
     {{> meta_tags}}
-    <link rel="stylesheet" href="/content/bootstrap.min.css" />
-    <link rel="stylesheet" href="/content/theme.css">
-    <link rel="stylesheet" href="/content/css/admin_pages.css">
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/theme.css">
+    <link rel="stylesheet" href="{{ROOT_PATH}}content/css/admin_pages.css">
     <link rel="icon" href="{{favicon}}" type="image/png" sizes="16x16">
 </head>
 
@@ -13,13 +13,13 @@
     {{#> (lookup . 'component')}}
     <div class="alert alert-danger w-20 container" role="alert">
         <i data-feather="alert-circle"></i>
-        <span>The requested component was not found! <a href="/admin/pages">Back To Pages</a></span>
+        <span>The requested component was not found! <a href="{{ROOT_PATH}}admin/pages">Back To Pages</a></span>
     </div>
     {{/undefined}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/content/bootstrap.bundle.min.js"></script>
-    <script src="/content/symbols/feather.min.js"></script>
+    <script src="{{ROOT_PATH}}content/bootstrap.bundle.min.js"></script>
+    <script src="{{ROOT_PATH}}content/symbols/feather.min.js"></script>
     <script>
         feather.replace({ width: '24', height: '24', 'stroke-width': '1' });
     </script>
