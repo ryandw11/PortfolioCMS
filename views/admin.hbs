@@ -1,7 +1,9 @@
 <head>
-    <link rel="stylesheet" href="/bootstrap.min.css" />
-    <link rel="stylesheet" href="/theme.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    {{> meta_tags}}
+    <link rel="stylesheet" href="/content/bootstrap.min.css" />
+    <link rel="stylesheet" href="/content/theme.css">
+    <link rel="stylesheet" href="/content/css/admin.css">
+    <link rel="icon" href="{{favicon}}" type="image/png" sizes="16x16">
 </head>
 
 <body>
@@ -123,9 +125,9 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/bootstrap.bundle.min.js"></script>
-    <script src="/symbols/feather.min.js"></script>
-    <script src="/javascript/admin.js"></script>
+    <script src="/content/bootstrap.bundle.min.js"></script>
+    <script src="/content/symbols/feather.min.js"></script>
+    <script src="/content/javascript/admin.js"></script>
     <script>
         feather.replace({ width: '60', height: '60', 'stroke-width': '1' });
     </script>

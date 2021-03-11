@@ -63,7 +63,7 @@ else if (args.length >= 3 && args[2] == '-rmvDep') {
     console.log(`${purple}[PortfolioCMS]${end} Removing Dependencies...`);
     fse = require('fs-extra');
     deleteDepends();
-    console.log(`${purple}[PortfolioCMS]${end} ${green}Successfully removed dependencies...`);
+    console.log(`${purple}[PortfolioCMS]${end} ${green}Successfully removed dependencies... ${reset}`);
     rl.close();
 } else {
     console.log(`${purple}[PortfolioCMS]${end} Invalid arguments.`);
@@ -75,7 +75,7 @@ else if (args.length >= 3 && args[2] == '-rmvDep') {
  */
 function checkdepends() {
     if (!fs.existsSync('./node_modules/')) {
-        console.log(`${red}[PortfolioCMS]${end} ${yellow}Error: Cannot find node dependencies! Try running 'npm install' before running setup.js.`);
+        console.log(`${red}[PortfolioCMS]${end} ${yellow}Error: Cannot find node dependencies! Try running 'npm install' before running setup.js. ${reset}`);
         rl.close();
         return;
     }
@@ -147,7 +147,7 @@ function updateDepends() {
         fs.copyFileSync('./node_modules/feather-icons/dist/feather.min.js.map', './public/symbols/feather.min.js.map');
         fse.copySync('./node_modules/monaco-editor', './public/monaco-editor');
     } catch (ex) {
-        console.error(`${red}[PortfolioCMS]${end} An internal error has occured when trying to setup dependencies.`);
+        console.error(`${red}[PortfolioCMS]${end} An internal error has occured when trying to setup dependencies. ${reset}`);
         if (debug) {
             console.error(ex);
         }
@@ -164,7 +164,7 @@ function finishSetup() {
         fs.copyFileSync('./environment.json.default', './environment.json');
         console.log(`${purple}[PortfolioCMS]${end} Finished setting up environment.json file. Please configure the 'environment.json' file before starting up PortfolioCMS.`);
     }
-    console.log(`${purple}[PortfolioCMS]${end} ${green}Successfuly finsihed setting up PortfolioCMS. Start PortfolioCMS by running 'node index.js'`);
+    console.log(`${purple}[PortfolioCMS]${end} ${green}Successfuly finsihed setting up PortfolioCMS. Start PortfolioCMS by running 'node index.js' ${reset}`);
     rl.close();
     process.exit(0);
 }

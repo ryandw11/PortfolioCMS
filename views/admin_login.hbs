@@ -1,7 +1,9 @@
 <head>
-    <link rel="stylesheet" href="/bootstrap.min.css" />
-    <link rel="stylesheet" href="/theme.css">
-    <link rel="stylesheet" href="/css/login.css">
+    {{> meta_tags}}
+    <link rel="stylesheet" href="/content/bootstrap.min.css" />
+    <link rel="stylesheet" href="/content/theme.css">
+    <link rel="stylesheet" href="/content/css/login.css">
+    <link rel="icon" href="{{favicon}}" type="image/png" sizes="16x16">
 </head>
 
 <body>
@@ -32,7 +34,7 @@
         <button type="submit" class="btn btn-primary main-color btn-theme txt-color">Login</button>
     </form>
 
-    <script src="/symbols/feather.min.js"></script>
+    <script src="/content/symbols/feather.min.js"></script>
     <script>
         feather.replace({ width: '24', height: '24', 'stroke-width': '1' });
     </script>

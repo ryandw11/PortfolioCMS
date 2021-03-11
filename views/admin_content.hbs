@@ -1,8 +1,10 @@
 <head>
-    <link rel="stylesheet" href="/bootstrap.min.css" />
-    <link rel="stylesheet" href="/theme.css">
-    <link rel="stylesheet" href="/css/login.css">
-    <link rel="stylesheet" href="/css/admin_content.css">
+    {{> meta_tags}}
+    <link rel="stylesheet" href="/content/bootstrap.min.css" />
+    <link rel="stylesheet" href="/content/theme.css">
+    <link rel="stylesheet" href="/content/css/login.css">
+    <link rel="stylesheet" href="/content/css/admin_content.css">
+    <link rel="icon" href="{{favicon}}" type="image/png" sizes="16x16">
 </head>
 
 <body>
@@ -29,6 +31,9 @@
                 </div>
             </div>
         </form>
+        <div class="alert alert-danger mt-5">This page is currently not complete. Please check back in a future version
+            of
+            PortfolioCMS.</div>
     </main>
 
     {{!-- Bootstrap Modal --}}
@@ -131,10 +136,10 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/bootstrap.bundle.min.js"></script>
-    <script src="/symbols/feather.min.js"></script>
+    <script src="/content/bootstrap.bundle.min.js"></script>
+    <script src="/content/symbols/feather.min.js"></script>
     <script>
         feather.replace({ width: '24', height: '24', 'stroke-width': '1' });
     </script>
-    <script src="/javascript/admin_content.js"></script>
+    <script src="/content/javascript/admin_content.js"></script>
 </body>

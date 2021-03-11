@@ -9,7 +9,7 @@
 const major = 1;
 const minor = 0;
 const bug = 0;
-const suffix = "-BETA-RC1";
+const suffix = "-BETA-RC2";
 
 function getVersionString() {
     return `${major}.${minor}.${bug}${suffix}`;
