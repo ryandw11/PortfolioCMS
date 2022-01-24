@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/content/css/admin_component.css">
+<div class="container">
+    <h2 class="txt-color text-center">Create Youtube Video Element</h2>
+    <div class="alert alert-danger w-20 container" id="page-error" style="display: none;" role="alert">
+        <i data-feather="alert-circle"></i>
+        <span></span>
+    </div>
+    <form action="" method="post" id="form">
+        <input type="hidden" name="type" value="video" />
+
+        <label class="txt-color" for="video">Please enter the id of the Youtube Video that you would like to embed. <br>Example: dQw4w9WgXcQ</label>
+        <input class="form-control comp-input" type="text" name="videoId" id="video" value="{{componentData}}">
+
+        <button id="save" class="btn main-color txt-color btn-theme" type="submit">Save</button>
+    </form>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        const url = new URL(location.href);
+        const err = url.searchParams.get("err");
+        const errorDoc = document.getElementById("page-error");
+        if (err == null) return;
+        switch (err) {
+            case "1":
+                errorDoc.getElementsByTagName("span")[0].textContent = "Error: There must be a valid video id.";
+                errorDoc.style.display = "block";
+                break;
+        }
+    });
+</script>

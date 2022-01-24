@@ -19,7 +19,7 @@
  *         ┕ edit_component/    | HBS files for editing a component.
  * 
  *   
- * Version: 1.0.0-BETA-RC2
+ * Version: 1.0.0-BETA-RC3
  * 
  * ==============================[Portfolio CMS]==============================
  */
@@ -48,6 +48,9 @@ ComponentManager.addComponent(new Carousel());
 
 const Gallery = require('./components/gallery.js');
 ComponentManager.addComponent(new Gallery());
+
+const Video = require('./components/video.js');
+ComponentManager.addComponent(new Video());
 
 /**
  * ====================================================================================
