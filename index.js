@@ -164,7 +164,14 @@ const hbs = require('express-handlebars')({
     }
 });
 
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            scriptSrc: ["'self'", "https://ajax.googleapis.com", "'sha256-0XxDLJjhhwpdPGS+3zwP6U52BOGqp+H/BphYrSbE48E='"],
+            frameSrc: ["https://www.youtube.com"]
+        }
+    }
+}));
 
 app.engine('hbs', hbs);
 app.set('view engine', 'hbs');
@@ -293,6 +300,7 @@ app.use('/admin', admin(version, accounts, settings, pages, md5, uuid));
 
 // The page route.
 const pagesRoute = require("./routes/pages.js");
+const { websiteURL } = require('./settings.js');
 app.use('/admin/pages', pagesRoute(accounts, settings, pages, uuid, pageUtils, sqlString, ComponentManager));
 
 /**
@@ -323,6 +331,7 @@ app.get('*', (req, res) => {
             content.forEach((co) => {
                 co.componentData = ComponentManager.getComponentFromName(co.componentType).getComponentData(co.componentData);
                 co.componentType = "components/" + co.componentType;
+                co.websiteURL = settings.websiteURL;
             });
             pages.all(`SELECT * FROM navigation`, (err, nav) => {
                 res.render('page', {

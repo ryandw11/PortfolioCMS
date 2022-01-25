@@ -14,5 +14,6 @@ module.exports = {
     web_logo: "/content/" + json['website-settings']['web-site-logo'],
     favicon: "/content/" + json['website-settings']['web-site-favicon'],
     security_settings: json['security-settings'],
-    production: json['production']
+    production: json['production'],
+    websiteURL: json['website-url']
 };

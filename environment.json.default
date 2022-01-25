@@ -1,4 +1,5 @@
 {
+    "website-url": "http://www.example.com",
     "website-settings": {
         "web-site-logo": "/images/logo.png",
         "web-site-favicon": "/images/favicon.png"
